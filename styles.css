@@ -73,17 +73,11 @@ img {
 }
 
 .logo-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: block;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  border: 1.5px solid var(--gold);
-  color: var(--gold);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
+  object-fit: contain;
   flex-shrink: 0;
 }
 
@@ -524,6 +518,13 @@ img {
   color: var(--text);
 }
 
+.portfolio-section-lead {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.7;
+}
+
 .portfolio-section-desc {
   font-size: 13px;
   color: var(--text-muted);
@@ -598,6 +599,79 @@ img {
 .portfolio-placeholder code {
   color: var(--gold);
   font-size: 12px;
+}
+
+.soundcloud-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.soundcloud-featured {
+  width: 100%;
+}
+
+.soundcloud-featured .portfolio-card--wide {
+  grid-template-columns: 1fr;
+  gap: 14px;
+  align-items: stretch;
+}
+
+.soundcloud-featured .portfolio-info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 16px;
+}
+
+.soundcloud-featured .portfolio-info h3 {
+  margin-bottom: 0;
+}
+
+.soundcloud-featured .portfolio-info p {
+  flex: 1 1 100%;
+  margin: 0;
+}
+
+.portfolio-card--wide {
+  grid-template-columns: minmax(220px, 280px) 1fr;
+  align-items: center;
+}
+
+.soundcloud-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.portfolio-card--compact {
+  grid-template-columns: minmax(170px, 230px) 1fr;
+  gap: 18px;
+  align-items: center;
+  padding: 20px 22px;
+}
+
+.portfolio-card--compact .portfolio-tag {
+  margin-bottom: 8px;
+}
+
+.portfolio-card--compact .portfolio-info h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+}
+
+.portfolio-card--compact .portfolio-info p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.portfolio-card--compact .portfolio-iframe {
+  height: 150px;
+}
+
+.portfolio-card--compact .portfolio-placeholder {
+  min-height: 120px;
+  padding: 16px;
 }
 
 /* ===== YouTube Previews ===== */
@@ -792,6 +866,15 @@ img {
   .portfolio-card {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .portfolio-card--wide {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .soundcloud-grid {
+    grid-template-columns: 1fr;
   }
 
   .youtube-grid {
