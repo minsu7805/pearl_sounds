@@ -1,4 +1,11 @@
 {
   "version": 2,
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/pitch/heochanni",
+      "destination": "/pitch/heochanmi",
+      "permanent": true
+    }
+  ]
 }
