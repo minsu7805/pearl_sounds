@@ -4,21 +4,21 @@ const pitchTracks = [
     genre: 'Trot',
     title: '매화 (ver. Polka)',
     description: '허찬미님의 서사에 맞춰 제작한 맞춤 데모곡입니다.',
-    audioSrc: '../../audio/demo01-maehwa-polka.mp3'
+    audioSrc: '/audio/demo01-maehwa-polka.mp3'
   },
   {
     num: '02',
     genre: 'Trot',
     title: '월척',
-    description: "잔잔한 인연은 스쳐 지나가고, 평생 품고 싶은 진짜 사랑은 '월척'에 빗대어 풀어낸 곡",
-    audioSrc: '../../audio/demo02-wolchuk.mp3'
+    description: "잔잔한 잔챙이 인연은 스쳐 지나가고, 찐 사랑을 '월척'으로 빗대어 낚시 용어로 풀어낸 곡",
+    audioSrc: '/audio/demo02-wolchuk.mp3'
   },
   {
     num: '03',
     genre: 'Trot',
     title: '매화 (ver. Ballad · 가요무대 컨셉)',
     description: '"매화"의 트로트 발라드 버전입니다. 서브 버전으로서 1절까지만 작업했습니다.',
-    audioSrc: '../../audio/demo03-maehwa-ballad.mp3'
+    audioSrc: '/audio/demo03-maehwa-ballad.mp3'
   }
 ];
 
