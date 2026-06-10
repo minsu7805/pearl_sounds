@@ -951,11 +951,11 @@ img {
 .pitch-desc {
   font-size: 14px;
   color: var(--text-muted);
-  line-height: 1.9;
+  line-height: 1.55;
 }
 
 .pitch-desc p + p {
-  margin-top: 12px;
+  margin-top: 6px;
 }
 
 .pitch-track-list {
