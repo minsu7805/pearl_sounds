@@ -10,30 +10,27 @@ const portfolioTracks = [
       genre: 'Trot',
       title: 'Trot_하이라이트 모음',
       description: '미발매곡의 부분 편집본입니다.',
-      soundcloudUrl: 'https://soundcloud.com/pearl_sounds/trot/s-BLw5PGboOUy',
-      soundcloudTrackId: '2335388465'
+      soundcloudUrl: 'https://soundcloud.com/pearl_sounds/trot/s-KlHYU82GbTd',
+      soundcloudTrackId: '2335980878'
     },
     soundcloudTracks: [
       {
         genre: 'Trot',
         title: '월척_Part1',
         description: '낚시에 비유한 사랑 노래 "월척"입니다. 완곡 데모가 필요하시면 요청해주세요.',
-        soundcloudUrl: 'https://soundcloud.com/pearl_sounds/part1-1/s-ytoAJds8B5D',
-        soundcloudTrackId: '2335388273'
+        audioSrc: 'audio/demo02-wolchuk.mp3'
       },
       {
         genre: 'Trot',
-        title: '매화(ver_가요무대).mp3',
+        title: '매화 (ver. Ballad · 가요무대 컨셉)',
         description: '"매화"의 트로트 발라드 버전입니다.',
-        soundcloudUrl: 'https://soundcloud.com/pearl_sounds/ver-mp3/s-uxwNCUAmr4g',
-        soundcloudTrackId: '2335388126'
+        audioSrc: 'audio/demo03-maehwa-ballad.mp3'
       },
       {
         genre: 'Trot',
-        title: '매화(ver_polka)_Part1',
+        title: '매화 (ver. Polka)',
         description: '"매화"의 행사 공연용 폴카 버전입니다.',
-        soundcloudUrl: 'https://soundcloud.com/pearl_sounds/ver_polka-part1/s-qyQldyZSX8s',
-        soundcloudTrackId: '2335387973'
+        audioSrc: 'audio/demo01-maehwa-polka.mp3'
       },
       {
         genre: 'Trot',
@@ -115,6 +112,74 @@ function buildSoundCloudEmbed(rawUrl, trackId) {
   return `https://w.soundcloud.com/player/?${params.toString()}`;
 }
 
+function encodeAudioSrc(src) {
+  const slash = src.lastIndexOf('/');
+  if (slash === -1) return encodeURIComponent(src);
+  return src.slice(0, slash + 1) + encodeURIComponent(src.slice(slash + 1));
+}
+
+function renderHtml5Player(track) {
+  const audioSrc = (track.audioSrc || '').trim();
+
+  if (audioSrc) {
+    const encodedSrc = encodeAudioSrc(audioSrc);
+    const safeTitle = escapeHtml(track.title);
+    return `
+      <div class="custom-audio" data-audio-player>
+        <audio
+          class="custom-audio__native"
+          preload="metadata"
+          playsinline
+          webkit-playsinline
+          title="${safeTitle}"
+        >
+          <source src="${encodedSrc}" type="audio/mpeg">
+        </audio>
+        <div class="custom-audio__card">
+          <button type="button" class="custom-audio__play" aria-label="${safeTitle} 재생">
+            <svg class="custom-audio__icon custom-audio__icon--play" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M8 5.14v13.72c0 .79.87 1.27 1.54.84l10.14-6.86a1 1 0 0 0 0-1.68L9.54 4.3A1 1 0 0 0 8 5.14Z" fill="currentColor"/>
+            </svg>
+            <svg class="custom-audio__icon custom-audio__icon--pause" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 5h3v14H7V5Zm7 0h3v14h-3V5Z" fill="currentColor"/>
+            </svg>
+            <span class="custom-audio__spinner" aria-hidden="true"></span>
+          </button>
+          <div class="custom-audio__body">
+            <div class="custom-audio__meta">
+              <span class="custom-audio__title">${safeTitle}</span>
+              <span class="custom-audio__time">
+                <span class="custom-audio__time-current">0:00</span>
+                <span class="custom-audio__time-sep">/</span>
+                <span class="custom-audio__time-duration">0:00</span>
+              </span>
+            </div>
+            <div
+              class="custom-audio__progress"
+              role="slider"
+              aria-label="재생 위치"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+              tabindex="0"
+            >
+              <div class="custom-audio__progress-track">
+                <div class="custom-audio__progress-fill"></div>
+                <div class="custom-audio__progress-thumb"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p class="custom-audio__error" aria-live="polite">음원을 불러오지 못했습니다.</p>
+      </div>
+    `;
+  }
+
+  return `<div class="portfolio-placeholder">
+    MP3 파일을 <code>pearlsounds/audio/</code> 폴더에 넣고 <code>portfolio.js</code>의 <code>audioSrc</code> 경로를 맞춰 주세요.
+  </div>`;
+}
+
 function renderSoundCloudPlayer(track) {
   const hasUrl = track.soundcloudUrl && track.soundcloudUrl.trim() !== '';
 
@@ -135,6 +200,13 @@ function renderSoundCloudPlayer(track) {
   </div>`;
 }
 
+function renderPlayer(track) {
+  if (track.audioSrc && track.audioSrc.trim() !== '') {
+    return renderHtml5Player(track);
+  }
+  return renderSoundCloudPlayer(track);
+}
+
 function renderSoundCloudCard(track, layout) {
   const cardClass = layout === 'wide'
     ? 'portfolio-card portfolio-card--wide'
@@ -147,7 +219,7 @@ function renderSoundCloudCard(track, layout) {
         <h3>${track.title}</h3>
         <p>${track.description}</p>
       </div>
-      <div class="portfolio-player">${renderSoundCloudPlayer(track)}</div>
+      <div class="portfolio-player">${renderPlayer(track)}</div>
     </article>
   `;
 }
@@ -175,10 +247,19 @@ function renderSoundCloudSection(featured, tracks) {
   `;
 }
 
+function escapeHtml(text) {
+  return String(text)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
 function renderPortfolio() {
   const container = document.getElementById('portfolio-list');
   if (!container) return;
 
+  try {
   container.innerHTML = portfolioTracks.map((track) => {
     const soundcloudSection = renderSoundCloudSection(track.soundcloudFeatured, track.soundcloudTracks);
 
@@ -235,6 +316,14 @@ function renderPortfolio() {
       </div>
     `;
   }).join('');
+  } catch (error) {
+    console.error('Portfolio render failed:', error);
+    container.innerHTML = '<p class="portfolio-section-desc">포트폴리오를 불러오지 못했습니다. 페이지를 새로고침해 주세요.</p>';
+  }
+
+  if (typeof initCustomAudioPlayers === 'function') {
+    initCustomAudioPlayers(container);
+  }
 }
 
 renderPortfolio();
