@@ -17,7 +17,7 @@ const pitchTracks = [
     num: '03',
     genre: 'Trot',
     title: '매화 (ver. Ballad · 가요무대 컨셉)',
-    description: '"매화"의 트로트 발라드 버전입니다. 서브 버전으로서 1절까지만 작업했습니다.',
+    description: '"매화"의 트로트 발라드 버전입니다. 다른 분위기로 들려드리기 위해 현재 1절까지 작업한 데모입니다.',
     audioSrc: '/audio/demo03-maehwa-ballad.mp3'
   }
 ];
