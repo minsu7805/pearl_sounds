@@ -10,7 +10,7 @@ const pitchTracks = [
     num: '02',
     genre: 'Trot',
     title: '월척',
-    description: "잔잔한 잔챙이 인연은 스쳐 지나가고, 찐 사랑을 '월척'으로 빗대어 낚시 용어로 풀어낸 곡",
+    description: "잔잔한 잔챙이 인연은 스쳐 지나가고, 찐 사랑을 '월척'으로 빗대어 낚시 이야기로 풀어낸 곡",
     audioSrc: '/audio/demo02-wolchuk.mp3'
   },
   {
