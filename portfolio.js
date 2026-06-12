@@ -10,8 +10,7 @@ const portfolioTracks = [
       genre: 'Trot',
       title: 'Trot_하이라이트 모음',
       description: '미발매곡의 부분 편집본입니다.',
-      soundcloudUrl: 'https://soundcloud.com/pearl_sounds/trot/s-KlHYU82GbTd',
-      soundcloudTrackId: '2335980878'
+      audioSrc: 'audio/demo04-trot-highlight.mp3'
     },
     soundcloudTracks: [
       {
@@ -36,8 +35,7 @@ const portfolioTracks = [
         genre: 'Trot',
         title: '참참참내_Part1',
         description: '입에 착착 감기는 후렴의 신나는 떼창 유도 트로트입니다.',
-        soundcloudUrl: 'https://soundcloud.com/pearl_sounds/part1/s-hSEOyU4u0Lr',
-        soundcloudTrackId: '2335387667'
+        audioSrc: 'audio/demo05-chamchamchamnae-part1.mp3'
       }
     ],
     youtubeVideos: [
