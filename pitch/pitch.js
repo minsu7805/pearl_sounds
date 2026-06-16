@@ -6,6 +6,13 @@ function escapeHtml(text) {
     .replace(/"/g, '&quot;');
 }
 
+function resolveAssetSrc(src) {
+  if (!src.startsWith('/')) return src;
+  const base = document.getElementById('site-base');
+  const root = base ? base.href : `${location.origin}/`;
+  return new URL(src.slice(1), root).href;
+}
+
 function encodeAudioSrc(src) {
   const slash = src.lastIndexOf('/');
   if (slash === -1) return encodeURIComponent(src);
@@ -13,7 +20,7 @@ function encodeAudioSrc(src) {
 }
 
 function renderPitchPlayer(track) {
-  const encodedSrc = encodeAudioSrc(track.audioSrc);
+  const encodedSrc = encodeAudioSrc(resolveAssetSrc(track.audioSrc));
   const safeTitle = escapeHtml(track.title);
 
   return `
