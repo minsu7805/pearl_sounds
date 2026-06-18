@@ -15,12 +15,6 @@ const portfolioTracks = [
     soundcloudTracks: [
       {
         genre: 'Trot',
-        title: '월척_Part1',
-        description: '낚시에 비유한 사랑 노래 "월척"입니다. 완곡 데모가 필요하시면 요청해주세요.',
-        audioSrc: 'audio/demo02-wolchuk.mp3'
-      },
-      {
-        genre: 'Trot',
         title: '매화 (ver. Ballad · 가요무대 컨셉)',
         description: '"매화"의 트로트 발라드 버전입니다.',
         audioSrc: 'audio/demo03-maehwa-ballad.mp3'
@@ -30,6 +24,12 @@ const portfolioTracks = [
         title: '매화 (ver. Polka)',
         description: '"매화"의 행사 공연용 폴카 버전입니다.',
         audioSrc: 'audio/demo01-maehwa-polka.mp3'
+      },
+      {
+        genre: 'Trot',
+        title: '월척_Part1',
+        description: '낚시에 비유한 사랑 노래 "월척"입니다. 완곡 데모가 필요하시면 요청해주세요.',
+        audioSrc: 'audio/demo02-wolchuk.mp3'
       },
       {
         genre: 'Trot',
